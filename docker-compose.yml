@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    secrets:
+      - db_password
+
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD_FILE: ${POSTGRES_PASSWORD_FILE}
+    volumes:
+      - postgress_data:/var/lib/postgresql/data
+    secrets:
+      - db_password
+
+
+  redis:
+    image: redis:6
+    ports:
+      - "6379:6379"
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+volumes:
+  postgress_data:
+
+
