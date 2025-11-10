@@ -13,10 +13,7 @@ r = redis.Redis(
 
 def get_db():  
     # Read password from secret file (secure way)
-    password_file = os.getenv("POSTGRES_PASSWORD_FILE")
-    with open(password_file) as f:
-        password = f.read().strip()
-    
+    password = os.getenv("DB_PASSWORD", os.getenv("POSTGRES_PASSWORD", ""))
 
     conn = psycopg2.connect(
         host=os.getenv("POSTGRES_HOST"),      # Hostname: 'db'
