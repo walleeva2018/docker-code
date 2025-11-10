@@ -3,7 +3,6 @@ version: '3.9'
 services:
   web:
     build: .
-    image: zubairrafi/dockerapp:latest
     ports:
       - "5000:5000"
     env_file:
