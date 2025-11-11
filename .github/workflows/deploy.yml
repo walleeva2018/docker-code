@@ -27,10 +27,10 @@ jobs:
      # Step 4: Create version tag
      - name: Tag image with commit SHA
        run: |
-        docker tag zubairrafi/dockerapp:latest zubairrafi/dockerapp:${{ github.sha }}
+        docker tag zubairrafi/docker-test:latest zubairrafi/docker-test:${{ github.sha }}
     
      # Step 5: Push to Docker Hub
      - name: Push to Docker Hub
        run: |
-        docker push zubairrafi/dockerapp:latest
-        docker push zubairrafi/dockerapp:${{ github.sha }}
+        docker push zubairrafi/docker-test:latest
+        docker push zubairrafi/docker-test:${{ github.sha }}
